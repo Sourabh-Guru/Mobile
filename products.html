@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 12 - Product Detail</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Mobile Store</h1>
+            </div>             
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./products.html">Products</a>
+                <a href="./cart.html">Cart <span id="cartcount"></span></a>
+                <a href="./orders.html">Orders</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="product-detail">
+            <!-- Thumbnail Navigation -->
+            <div class="thumbnail-nav">
+                <div class="thumbnail active">
+                    <img src="./images/iphone-Frount-image.png" alt="iPhone 12 Front">
+                </div>
+                <div class="thumbnail">
+                    <img src="./images/iphone-back-side.jpeg" alt="iPhone 12 Back">
+                </div>
+                <div class="thumbnail">
+                    <img src="./images/iphone-side-image.jpeg" alt="iPhone 12 Side">
+                </div>
+                <div class="thumbnail">
+                    <img src="./images/iphone-Camara.jpeg" alt="iPhone 12 Camera">
+                </div>
+            </div>
+
+            <!-- Main Product Image -->
+            <div class="main-image">
+                <img src="./images/iphone-Frount-image.png" alt="iPhone 12">
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <span class="brand">Brand: Apple</span>
+                <h1>APPLE iPhone 12 (White, 64 GB)</h1>
+                <div class="price-display">
+                    <span class="current-price">₹49,900</span>
+                    <span class="original-price">₹79,000</span>
+                  </div>
+                <div class="apple-logo">
+                    <img src="./images/Apple Logo.jpg" alt="">
+                    
+                </div>
+
+                <div class="apple-des">
+                    <p>1 year warranty for phone and 1 year warranty for in Box Accessories.</p>
+                </div>
+
+                <div class="form-group">
+                    <select>
+                        <option>Select colour</option>
+                        <option>White</option>
+                        <option>Black</option>
+                        <option>Blue</option>
+                    </select>
+                </div>
+                <div class="quantity-controls">
+                    <button
+                      class="quantity-button"
+                      onclick="updateQuantity('item1', -1)"
+                    >
+                      -
+                    </button>
+                    <span class="quantity-display" id="quantity-item1">1</span>
+                    <button
+                      class="quantity-button"
+                      onclick="updateQuantity('item1', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                
+                <div class="order-summary card">
+                    <div class="summary-header"></div>
+                    <div class="summary-content">
+                      <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹49,900</span>
+                      </div>
+                      <div class="summary-row">
+                        <span>Delivery</span>
+                        <span class="free-delivery">Free</span>
+                      </div>
+                      <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="total">₹49,900</span>
+                      </div>
+                    </div>
+
+                    <script>
+
+                      </script>
+
+  <div class="buttons">
+    <button class="btn1" onclick="saveToSession(); window.location.href='order-form.html'">BUY NOW</button>
+    <button class="btn2" onclick="location.href='cart.html'">GO TO CART</button>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>

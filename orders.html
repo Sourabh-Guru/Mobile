@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Mobile Store</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background: #f1f3f6;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .delivery-address h2 {
+      color: #212121;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .address-content {
+      color: #212121;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .phone-number {
+      margin-top: 12px;
+      color: #212121;
+    }
+
+    .tracking-number {
+      margin-top: 12px;
+      color: #878787;
+      font-size: 14px;
+    }
+
+    .rewards-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .rewards-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .rewards-icon {
+      width: 24px;
+      height: 24px;
+      background: #ffe11b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rewards-text {
+      flex: 1;
+    }
+
+    .rewards-title {
+      color: #212121;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .rewards-subtitle {
+      color: #878787;
+      font-size: 12px;
+    }
+
+    .more-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-button {
+      background: white;
+      border: 1px solid #e0e0e0;
+      padding: 8px 16px;
+      border-radius: 4px;
+      color: #2874f0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-cards {
+      display: flex;
+      gap: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+.product-image {
+    width: 722px;
+    height: 115px;
+    object-fit: contain;
+    gap: 100px;
+}
+
+    .product-details {
+      flex: 1;
+    }
+
+    .product-title {
+      font-size: 14px;
+      color: #212121;
+      margin-bottom: 8px;
+    }
+
+    .product-seller {
+      font-size: 12px;
+      color: #878787;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .product-offer {
+      color: #388e3c;
+      font-size: 12px;
+    }
+
+    .tracking-timeline {
+      margin: 32px 0;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .timeline-point {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .point-dot {
+      width: 20px;
+      height: 20px;
+      background: #388e3c;
+      border-radius: 50%;
+      margin-bottom: 8px;
+    }
+
+    .point-label {
+      font-size: 12px;
+      color: #212121;
+      text-align: center;
+    }
+
+    .point-date {
+      font-size: 12px;
+      color: #878787;
+      margin-top: 4px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #388e3c;
+      z-index: 0;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .action-button {
+      color: #2874f0;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .no-return {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #212121;
+    }
+
+    .no-return a {
+      color: #2874f0;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+</style>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Mobile Store</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="cart.html">Cart <span id="cart-count"></span></a>
+                <a href="orders.html">Orders</a>
+            </div>
+            <script src="js/main.js"></script>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>My Orders</h2>
+        <div id="orders-list">
+            <!-- Orders will be dynamically loaded here -->   
+    <div>
+        <div class="card delivery-address">
+            <h2>Delivery Address</h2>
+            <div class="address-content">
+              <div>Sourabh Gurav</div>
+              <div>Surana nivas Bedkihal Karnataka Shivngar bhoj road,</div>
+              <div>Shivngar bus stop BELGAUM - 591214, Karnataka</div>
+              <div class="phone-number">Phone number<br>9113286721</div>
+              <div class="tracking-number">This order is also tracked by 7975589468, 7975589468</div>
+            </div>
+          </div>
+        
+          <div class="card rewards-section">
+            <div>
+              <h2>Your Rewards</h2>
+              <div class="rewards-item">
+                <div class="rewards-icon">₹</div>
+                <div class="rewards-text">
+                  <div class="rewards-title">4 SuperCoins Cashback</div>
+                  <div class="rewards-subtitle">Use it to save on your next order</div>
+                </div>
+              </div>
+              <div class="rewards-item">
+                <div class="rewards-icon">⚡</div>
+                <div class="rewards-text">
+                  <div class="rewards-title">Early Access to this Sale</div>
+                  <div class="rewards-subtitle">For Flipkart Plus Members</div>
+                </div>
+              </div>
+            </div>
+            <div class="more-actions">
+              <button class="download-button">
+                <span>📄</span>
+                Download Invoice
+              </button>
+            </div>
+          </div>
+        
+          <div class="card">
+            <div class="product-cards">
+              <img src="./images/iphone-Frount-image.png" alt="Mamaearth Product" class="product-image">
+              <div class="product-details">
+                <div class="product-title">APPLE iPhone 12 (White, 64 GB)..</div>
+                <div class="product-seller">1 year warranty for phone and 1 year warranty for in Box Accessories.</div>
+
+
+                <p>Total: <strong id="totalDisplay"></strong></p>
+                <script>
+                  // Retrieve data from sessionStorage
+
+                  document.getElementById("totalDisplay").textContent = sessionStorage.getItem("total");
+          
+                  // Optionally, check if data exists to avoid empty display
+                  if (!sessionStorage.getItem("subtotal") || !sessionStorage.getItem("total")) {
+
+                      document.body.innerHTML = "<p>No order summary available.</p>";
+                  }
+              </script>
+
+                <div class="product-offer">1 Offer & 1 Coupon Applied</div>
+              </div>
+            </div>
+        
+            <div class="tracking-timeline">
+              <div class="timeline-line"></div>
+              <div class="timeline-point">
+                <div class="point-dot"></div>
+                <div class="point-label">Order Confirmed</div>
+                <div class="point-date">Sat, 26th Oct</div>
+              </div>
+              <div class="timeline-point">
+                <div class="point-dot"></div>
+                <div class="point-label">Shipped</div>
+                <div class="point-date">Wed, 30th Oct</div>
+              </div>
+              <div class="timeline-point">
+                <div class="point-dot"></div>
+                <div class="point-label">Out for delivery</div>
+                <div class="point-date">Sat, 1 Nov</div>
+              </div>
+              <div class="timeline-point">
+                <div class="point-dot"></div>
+                <div class="point-label">Delivered</div>
+                <div class="point-date">Sun, 3 Nov</div>
+              </div>
+            </div>
+        
+            <div style="text-align: center; color: #212121; margin: 16px 0;">
+              Your item has been Processing
+            </div>
+        
+            <div class="action-buttons">
+              <a href="#" class="action-button">
+                <span>⭐</span>
+                Rate & Review Product
+              </a>
+              <a href="#" class="action-button">
+                <span>💬</span>
+                Chat with us
+              </a>
+            </div>
+        
+            <div class="no-return">
+              Product  7 Daysreturn policy
+              <a href="#">Know more</a>
+            </div>
+          </div>
+    </div>     
+    <!-- <script src="js/main.js"></script> -->
+</body>
+</html>

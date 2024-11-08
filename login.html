@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Mobile Store</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <nav>
+        <div class="nav-container">
+          <div class="logo">
+            <h1>Mobile Store</h1>
+          </div>
+          <div class="nav-links">
+              <a href="login.html" id="login-link">Login</a>
+              <a href="index.html" id="home-link">Home</a>
+              <a href="products.html" id="products-link">Products</a>
+              <a href="cart.html" id="cart-link">Cart <span id="cart-count"></span></a>
+              <a href="orders.html" id="orders-link">Orders</a>
+            </div>
+            
+        </div>
+      </nav>
+  </body>
+  <style>
+         /* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styling for navigation */
+nav {
+  background-color: #f8f9fa;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  max-width: 1434px;
+  margin: 0 auto;
+}
+
+.logo h1 {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+#login-link {
+  font-weight: bold;
+}
+
+/* Optional: Padding for body to avoid content overlap */
+body {
+  padding-top: 60px;
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+        }
+        .nav-container {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 1rem 0rem;
+           background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2193b0;
+        }
+
+        .error {
+            color: #ff3333;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: #2193b0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1b7a94;
+        }
+
+        input.invalid {
+            border-color: #ff3333;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #28a745;
+            margin-top: 1rem;
+        }
+
+        /* Active Button  */
+        /* CSS for active link */
+        .active {
+            color: orange; /* Change this to your preferred color */
+            font-weight: bold;
+        }
+
+  </style>
+  <body>
+    <div class="container">
+        <h2>Login</h2>
+         <form action="http://localhost:3000/login" method="post" id="loginForm" onsubmit="return validateForm(event)">
+          <div class="form-group">
+              <label for="full_name">Full Name</label>
+              <input type="text" id="full_name" name="full_name" required />
+              <div class="error" id="username-error">Username must be at least 3 characters</div>
+          </div>
+      
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+              <div class="error" id="email-error">Please enter a valid email address</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" id="phone_number" name="phone_number" required />
+            <div class="error" id="phone-error">Please enter a valid phone number</div>
+        </div>
+        
+            <button class="login-button" onclick="login()" type="button">Login</button>
+            <div class="success-message" id="success-message" style="display: none;">Login successful!</div>
+          </a>
+        </form>
+
+    </div>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+            
+            // Reset errors
+            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
+            document.querySelectorAll('input').forEach(input => input.classList.remove('invalid'));
+            
+            // Username validation
+            const username = document.getElementById('username').value;
+            if (username.length < 3) {
+                document.getElementById('username-error').style.display = 'block';
+                document.getElementById('username').classList.add('invalid');
+                isValid = false;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email-error').style.display = 'block';
+                document.getElementById('email').classList.add('invalid');
+                isValid = false;
+            }
+
+            // Phone validation
+            const phone = document.getElementById('phone').value;
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phone-error').style.display = 'block';
+                document.getElementById('phone').classList.add('invalid');
+                isValid = false;
+            }
+
+            // Show success message if all validations pass
+            if (isValid) {
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('loginForm').reset();
+                setTimeout(() => {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 3000);
+            }
+
+            return false;
+        }
+
+        // Real-time validation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                const error = document.getElementById(`${this.id}-error`);
+                error.style.display = 'none';
+                this.classList.remove('invalid');
+            });
+        });
+
+        // Active Button 
+
+        // JavaScript to set active link
+        document.addEventListener("DOMContentLoaded", () => {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPath.split("/").pop()) {
+        link.classList.add("active");
+    }
+  });
+});
+
+// change the file 
+
+function login() {
+  // Show the success message
+  document.getElementById("success-message").style.display = "block";
+
+  // Redirect to index.html after a short delay (e.g., 2 seconds)
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 2000);
+}
+
+function closeModal() {
+  // Any additional logic for closing a modal can go here if needed
+}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Mobile Store</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="logo">
+          <h1>Mobile Store</h1>
+        </div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="cart.html">Cart <span id="cart-count"></span></a>
+          <a href="orders.html">Orders</a>
+        </div>
+      </div>
+    </nav>                                                            
+
+    <div class="container">
+      <h1 class="cart-header">
+        Shopping Cart (<span id="itemCount">1</span> items)
+      </h1>
+
+      <div class="cart-grid">
+        <div class="cart-items">
+          <div class="card cart-item" id="item1">
+            <div class="cart-item-content">
+              <img
+                src="./images/iphone-Frount-image.png"
+                alt="iPhone 12"
+                class="cart-item-image"
+              />
+              <div class="cart-item-details">
+                <div class="cart-item-header">
+                  <h3 class="cart-item-title">APPLE iPhone 12</h3>
+                  <button class="remove-button" onclick="removeItem('item1')">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                </div>
+                <p class="cart-item-specs">White, 64 GB</p>
+                <div class="quantity-controls">
+                  <button
+                    class="quantity-button"
+                    onclick="updateQuantity('item1', -1)"
+                  >
+                    -
+                  </button>
+                  <span class="quantity-display" id="quantity-item1">1</span>
+                  <button
+                    class="quantity-button"
+                    onclick="updateQuantity('item1', 1)"
+                  >
+                    +
+                  </button>
+                </div>
+                <div class="price-display">
+                  <span class="current-price">₹49,900</span>
+                  <span class="original-price">₹79,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-summary card">
+          <div class="summary-header">Order Summary</div>
+          <div class="summary-content">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">₹49,900</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span class="free-delivery">Free</span>
+            </div>
+            <div class="summary-row summary-total">
+              <span>Total</span>
+              <span id="total">₹49,900</span>
+            </div>
+          </div>
+        <a href="order-form.html">
+          <button class="place-order-button" onclick="saveToSession()">PLACE ORDER
+          </button>
+        </a>
+        </div>
+        
+        <script>
+
+        </script>
+        
+       /
+          <script>
+    
+          </script>          
+      
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div id="cart-items">
+        </button>
+        </a>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>

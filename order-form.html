@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+}
+
+        .checkout-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            width: 24px;
+            height: 24px;
+            background: #1a73e8;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+
+        .address-full {
+            grid-column: 1 / -1;
+        }
+
+        .submit-button {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            background: #ea580c;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            position: relative;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .modal-icon svg {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #333;
+        }
+
+        .modal-text {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .modal-button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal-button:hover {
+            background: #1557b0;
+        }
+
+        .edit-link {
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .price-details {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .price-total {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .savings {
+            color: #22c55e;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .home-tag {
+            background: #f3f4f6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        .freedelivery {
+            color: #22c55e;
+            margin-left: auto;  
+            
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="checkoutForm" onsubmit="handleSubmit(event)">
+            <!-- Login Section -->
+            <div class="checkout-section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <div class="section-title">LOGIN</div>
+                    <div class="section-status" style="margin-left: 10px; color: #22c55e;">✓</div>
+                    <a href="#" class="edit-link">CHANGE</a>
+                </div>
+                <div id="loginInfo"></div>
+            </div>
+
+            <!-- Delivery Address Section -->
+            <div class="checkout-section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <div class="section-title">DELIVERY ADDRESS</div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" id="phone" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group address-full">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-input" id="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" id="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" id="pincode" pattern="[0-9]{6}" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Details -->
+            <div class="price-details">
+                <h3 style="margin-bottom: 16px;">PRICE DETAILS</h3>
+                <div class="price-row">
+                    <span>Price (1 items)</span>
+                    
+                    <div class="cart-summary">
+                        <p>Subtotal: <strong id="subtotalDisplay"></strong></p>
+                        <p>Delivery: <strong id="deliveryDisplay"></strong></p>
+                        <p>Total: <strong id="totalDisplay"></strong></p>
+                    </div>
+        
+                </div>
+                <div class="price-row">
+                    <span>Delivery Charges</span>
+                    <span></span>
+                <div class="price-row">
+                    <span class="freedelivery">Free</span>
+                    
+                </div>
+                
+
+                </div>
+                <div class="savings">
+                    Your Total Savings on this order ₹4,551
+                </div>
+                <div class="price-row price-total">
+                    <div class="product-price">
+                        <span id="total-price"></span>
+                    </div>
+                    <!-- <script>
+                        document.getElementById("result").innerHTML=localStorage.getItem("textvalues");
+                    </script> -->
+
+
+                
+                    <script>
+
+                    </script>
+                    
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="submit-button">PLACE ORDER</button>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h2 class="modal-title">Congratulations!</h2>
+            <p class="modal-text">Your order has been successfully placed.<br>Order ID: #OD117628198276</p>
+            <a href="products.html">
+            <button class="modal-button" onclick="closeModal()">Continue Shopping</button>
+                <!-- <button class="modal-button">Continue Shopping</button> -->
+            </a>
+            
+        </div>
+    </div>
+
+    <script>
+       
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
